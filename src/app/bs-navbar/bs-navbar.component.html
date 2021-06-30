@@ -16,15 +16,17 @@
           <li><a routerLink="/login" class="nav-link px-3 text-black">Login</a></li>
         </ng-template>
       
-      <div *ngIf="auth.Username$ | async as Username ; else anonymous"  ngbDropdown class="dropdown">
+      <div *ngIf="appUser; else anonymous"  ngbDropdown class="dropdown">
         <a ngbDropdownToggle class="nav-link px-2 text-black" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          {{Username.displayName}}
+          {{appUser.name}}
         </a>
       
         <ul ngbDropdownMenu class="dropdown-menu " aria-labelledby="dropdownMenuLink">
           <li><a class="dropdown-item" routerLink="/my/orders">My Orders</a></li>
-          <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
-          <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
+          <ng-container *ngIf="appUser.isAdmin">
+            <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
+            <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
+          </ng-container>          
           <li><a class="dropdown-item" (click) = 'logout()'>Logout</a></li>
         </ul>
       </div>
@@ -33,6 +35,3 @@
       </div>
   </div>
 </header>
-<body>
-  <p *ngIf="auth.Username$ | async as Username">Welcome {{Username.displayName}} to Sharath Shopping Cart</p>
-</body>

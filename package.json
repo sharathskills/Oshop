@@ -26,6 +26,7 @@
     "bootstrap": "^5.0.1",
     "firebase": "^8.6.3",
     "grpc": "^1.24.10",
+    "ng2-validation": "^4.2.0",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.7",
     "save": "^2.4.0",
